@@ -1,0 +1,11 @@
+name = "cashe"
+description = "A money library written in Ada."
+version = "0.1.0-dev"
+
+authors = ["AJ Ianozi"]
+maintainers = ["AJ Ianozi <aj@ianozi.com>"]
+maintainers-logins = ["AJ-Ianozi"]
+
+[[depends-on]]
+iso = "^2.0.0"
+gnat = ">=12 & <2000"

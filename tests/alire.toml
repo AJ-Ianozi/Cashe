@@ -1,0 +1,19 @@
+name = "tests"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["AJ Ianozi"]
+maintainers = ["AJ Ianozi <aj@ianozi.com>"]
+maintainers-logins = ["AJ-Ianozi"]
+
+executables = ["tests"]
+
+[[depends-on]]
+cashe = "*"
+
+[[pins]]
+cashe = { path = "../"  }
+
+[[depends-on]]
+iso = "^2.0.0"
+gnat = ">=12 & <2000"

@@ -1,0 +1,16 @@
+/obj/
+/lib/
+/alire/
+/config/
+.DS_Store
+Thumbs.db
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp

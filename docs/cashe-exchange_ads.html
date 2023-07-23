@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>cashe-exchange.ads</title>
+<!-- Source: ./src/cashe-exchange.ads -->
+<!-- Generated with ROBODoc Version 4.99.44 (May  3 2023) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">Ada Cashe Library code documentation</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./sources.html#top">Source files</a>
+<a class="menuitem" href="./index.html#top">Index</a>
+<a class="menuitem" href="./robo_classes.html#top">Classes</a>
+<a class="menuitem" href="./robo_constants.html#top">Constants</a>
+<a class="menuitem" href="./robo_exceptions.html#top">Exceptions</a>
+<a class="menuitem" href="./robo_subprograms.html#top">Subprograms</a>
+<a class="menuitem" href="./robo_packages.html#top">Packages</a>
+<a class="menuitem" href="./robo_Methods.html#top">Methods</a>
+<a class="menuitem" href="./robo_records.html#top">Records</a>
+<a class="menuitem" href="./robo_types.html#top">Types</a>
+</div> <!-- navigation -->
+<div id="content">
+<h3>TABLE OF CONTENTS</h3>
+<ul>
+<li>1. <a href="#robo2">Cashe/Exchange</a></li>
+<ul>
+<li>1.1. <a href="#robo10">Exchange/Exchange.Currency_Exchange</a></li>
+<ul>
+<li>1.1.1. <a href="#robo20">Exchange.Currency_Exchange/Base_Is_Set</a></li>
+<li>1.1.2. <a href="#robo21">Exchange.Currency_Exchange/Contains</a></li>
+<li>1.1.3. <a href="#robo22">Exchange.Currency_Exchange/Convert</a></li>
+<li>1.1.4. <a href="#robo23">Exchange.Currency_Exchange/Rate</a></li>
+<li>1.1.5. <a href="#robo24">Exchange.Currency_Exchange/Set_Base</a></li>
+<li>1.1.6. <a href="#robo25">Exchange.Currency_Exchange/Set_Rate</a></li>
+</ul>
+</ul>
+</ul>
+<hr />
+<a name="Cashe2fExchange"></a>
+<a name="robo2"></a><h2>Cashe/Exchange [ Packages ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./cashe_ads.html#robo0">Cashe</a> ] [ <a href="./robo_packages.html#robo_top_of_doc">Packages</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    This package provides the ability to utilize a currency exchange.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="keyword">package</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><strong>Exchange</strong> <span class="keyword">is</span>
+</pre>
+
+<hr />
+<a name="Exchange2fExchange2eCurrency5fExchange"></a>
+<a name="robo10"></a><h2>Exchange/Exchange.Currency_Exchange [ Classes ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo2">Exchange</a> ] [ <a href="./robo_classes.html#robo_top_of_doc">Classes</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    An exchange containing various currencies and their conversions.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">type</span> Currency_Exchange <span class="keyword">is</span> <span class="keyword">tagged</span> <span class="keyword">private</span><span class="sign">;</span>
+</pre>
+<p class="item_name">USAGE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange<span class="sign">.</span><a href="#robo25">Set_Rate</a> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">,</span> 0<span class="sign">.</span>5<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Print <span class="sign">Â</span><span class="sign">£</span> 50<span class="sign">.</span>00 from a provided <span class="sign">$</span> 100<span class="sign">.</span>00
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line
+   <span class="sign">-</span><span class="sign">-</span>          <span class="sign">(</span>My_Exchange<span class="sign">.</span><a href="#robo22">Convert</a>
+   <span class="sign">-</span><span class="sign">-</span>             <span class="sign">(</span>From <span class="sign">=</span><span class="sign">&gt;</span> From_Minor <span class="sign">(</span>100_00<span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">)</span><span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>              To   <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="squote">'Image
+   --          );
+   --    end;
+</pre>
+<p class="item_name">METHODS</p>
+<pre>  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo24">Set_Base</a>
+  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo20">Base_Is_Set</a>
+  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo25">Set_Rate</a>
+  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo22">Convert</a>
+  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo21">Contains</a>
+  * <strong>Exchange.Currency_Exchange</strong>/<a href="#robo23">Rate</a>
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fBase5fIs5fSet"></a>
+<a name="robo20"></a><h2>Exchange.Currency_Exchange/Base_Is_Set [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Base_Is_Set</strong> <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> <span class="keyword">not</span> US_Exchange<span class="sign">.</span><strong>Base_Is_Set</strong> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       US_Exchange<span class="sign">.</span><a href="#robo24">Set_Base</a> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Quries if a base is set or not.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean:
+      * True if a base has been set
+      * False if a base has not been set
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fContains"></a>
+<a name="robo21"></a><h2>Exchange.Currency_Exchange/Contains [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Contains</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    From - The currency to convert from
+    To   - The currency to convert to
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Exchange<span class="sign">.</span><strong>Contains</strong> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP) then
+   --       Put_Line
+   --          (My_Exchange.<a href="#robo22">Convert</a>
+   --             (From =&gt; From_Minor (100_00, "</span>GBP<span class="quote">"),
+   --              To   =&gt; "</span>USD<span class="quote">")'Image
+   --          );
+   --    else
+   --       Put_Line ("</span>Not <span class="keyword">in</span> exchange<span class="quote">");
+   --    end if;
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo25">Set_Rate</a>
+    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo22">Convert</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Validate if a conversion is in the exchange.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean:
+       * True if there is a match of From -&gt; To
+       * False if From -&gt; To not exist in the <a href="#robo2">Exchange</a>
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fConvert"></a>
+<a name="robo22"></a><h2>Exchange.Currency_Exchange/Convert [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Convert</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The money <span class="keyword">with</span> the currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Convert</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The money <span class="keyword">with</span> the currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Convert</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The money <span class="keyword">with</span> the currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> <a href="./cashe-money_handling_ads.html#robo11">Money_Handling.Money</a><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    From - The money with the currency to convert from
+    To   - The currency to convert to
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange<span class="sign">.</span><a href="#robo25">Set_Rate</a> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">,</span> 0<span class="sign">.</span>5<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Print <span class="sign">Â</span><span class="sign">£</span> 50<span class="sign">.</span>00 from a provided <span class="sign">$</span> 100<span class="sign">.</span>00
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Exchange<span class="sign">.</span><a href="#robo21">Contains</a> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP) then
+   --          Put_Line
+   --             (My_Exchange.<strong>Convert</strong>
+   --                (From =&gt; From_Minor (100_00, "</span>GBP<span class="quote">"),
+   --                 To   =&gt; "</span>USD<span class="quote">")'Image
+   --             );
+   --       else
+   --          Put_Line ("</span>Not <span class="keyword">in</span> exchange<span class="quote">");
+   --       end if;
+   --    end;
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo25">Set_Rate</a>
+     * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo21">Contains</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Converts money of one currency to another
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    A new money object with the new currency and value when converted or
+    a money value of 0 if not found in the exchange.
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fRate"></a>
+<a name="robo23"></a><h2>Exchange.Currency_Exchange/Rate [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">)</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>  These can be used <span class="keyword">if</span> base rate <span class="keyword">is</span> enabled
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+   <span class="keyword">function</span> <strong>Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Decimal <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    From - The currency to convert from
+    To   - The currency to convert to
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Exchange<span class="sign">.</span><a href="#robo25">Set_Rate</a> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">,</span> 0<span class="sign">.</span>5<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Print the GBP exchange rate
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"<strong>Rate</strong> is "</span> <span class="sign">&amp;</span> My_Exchange<span class="sign">.</span><strong>Rate</strong> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">)</span><span class="squote">'Image);
+   --    end;
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo25">Set_Rate</a>
+    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo21">Contains</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Converts money of one currency to another
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    The exchangce rate corresponding to From:To in Decimal form
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fSet5fBase"></a>
+<a name="robo24"></a><h2>Exchange.Currency_Exchange/Set_Base [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Base</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the base <span class="keyword">for</span>
+       Base <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+       <span class="sign">-</span><span class="sign">-</span>  The base currency to set the exchange to
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Base</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the base <span class="keyword">for</span>
+       Base <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+       <span class="sign">-</span><span class="sign">-</span>  The base currency to set the exchange to
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Base</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the base <span class="keyword">for</span>
+       Base <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+       <span class="sign">-</span><span class="sign">-</span>  The base currency to set the exchange to
+      <span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Base - The currency to set the exchange to. Either custom or ISO
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       US_Exchange <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       US_Exchange<span class="sign">.</span><strong>Set_Base</strong> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Set USD<span class="sign">:</span>GBP to 1<span class="sign">:</span>0<span class="sign">.</span>5
+   <span class="sign">-</span><span class="sign">-</span>       US_Exchange<span class="sign">.</span><a href="#robo25">Set_Rate</a> <span class="sign">(</span><span class="quote">"GBP"</span><span class="sign">,</span> 0<span class="sign">.</span>5<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Set USD<span class="sign">:</span>BTC to 1<span class="sign">:</span>0<span class="sign">.</span>0000331163
+   <span class="sign">-</span><span class="sign">-</span>       US_Exchange<span class="sign">.</span><a href="#robo25">Set_Rate</a> <span class="sign">(</span>Bitcoin<span class="sign">,</span> 0<span class="sign">.</span>0000331163<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo20">Base_Is_Set</a>
+    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo25">Set_Rate</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Set the default base for the currency exchange.  Once this is called,
+    "from" will no longer have to be passed when setting the rate.
+</pre>
+
+<hr />
+<a name="Exchange2eCurrency5fExchange2fSet5fRate"></a>
+<a name="robo25"></a><h2>Exchange.Currency_Exchange/Set_Rate [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo10">Exchange.Currency_Exchange</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       From <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert from
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>  These can be used <span class="keyword">if</span> the base <span class="keyword">is</span> enabled<span class="sign">.</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       To   <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span> <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span> <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+   <span class="keyword">procedure</span> <strong>Set_Rate</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Currency_Exchange<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency exchange to set the rate <span class="keyword">in</span>
+       To   <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The currency to convert to
+       <a href="#robo23">Rate</a> <span class="sign">:</span> Decimal
+       <span class="sign">-</span><span class="sign">-</span>  The exchange rate<span class="sign">,</span> <span class="keyword">in</span> decimal format<span class="sign">.</span>
+      <span class="sign">)</span> <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> This<span class="sign">.</span><a href="#robo20">Base_Is_Set</a><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    From - The currency exchange to set the rate in
+    To   - The currency to convert to
+    <a href="#robo23">Rate</a> - The exchange rate, in decimal format.
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Create <span class="keyword">some</span> currencies to test
+   <span class="sign">-</span><span class="sign">-</span>       Bitcoin <span class="sign">:</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>          Create <span class="sign">(</span><a href="./cashe-currency_handling_ads.html#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"BTC"</span><span class="sign">,</span> Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 8<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                  <a href="./cashe-currency_handling_ads.html#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Bitcoin"</span><span class="sign">,</span> <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"à¸¿"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  based on the Jul<span class="sign">.</span> 9<span class="sign">,</span> 2023 exchange rate 
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  from openexchangerates<span class="sign">.</span>org<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>       BTC_to_USD <span class="sign">:</span> <span class="keyword">constant</span> Decimal <span class="sign">:</span><span class="sign">=</span> 30196<span class="sign">.</span>620159<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD_to_BTC <span class="sign">:</span> <span class="keyword">constant</span> Decimal <span class="sign">:</span><span class="sign">=</span> 0<span class="sign">.</span>0000331163<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD_to_JPY <span class="sign">:</span> <span class="keyword">constant</span> Decimal <span class="sign">:</span><span class="sign">=</span> 142<span class="sign">.</span>17488666<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       JPY_to_USD <span class="sign">:</span> <span class="keyword">constant</span> Decimal <span class="sign">:</span><span class="sign">=</span> 0<span class="sign">.</span>007033591<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>   Create the exchanges
+   <span class="sign">-</span><span class="sign">-</span>       Test_Ex <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       BTC_Ex  <span class="sign">:</span> Currency_Exchange<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  If you <span class="keyword">use</span> USD <span class="sign">-</span><span class="sign">&gt;</span> GBP as 0<span class="sign">.</span>40 <span class="keyword">then</span> it will automatically create
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  GBP <span class="sign">-</span><span class="sign">&gt;</span> USD as 2<span class="sign">.</span>50
+   <span class="sign">-</span><span class="sign">-</span>       Test_Ex<span class="sign">.</span><strong>Set_Rate</strong> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"GBP"</span><span class="sign">,</span> 0<span class="sign">.</span>40<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  You can also <span class="keyword">use</span> the inverse<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>       Test_Ex<span class="sign">.</span><strong>Set_Rate</strong> <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> <span class="quote">"JPY"</span><span class="sign">,</span> USD_to_BTC<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       Test_Ex<span class="sign">.</span><strong>Set_Rate</strong> <span class="sign">(</span><span class="quote">"JPY"</span><span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">,</span> USD_to_JPY<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  You can also set the base<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>       BTC_Ex<span class="sign">.</span><a href="#robo24">Set_Base</a> <span class="sign">(</span>Bitcoin<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       BTC_Ex<span class="sign">.</span><strong>Set_Rate</strong>  <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> BTC_to_USD<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  You can still set other values <span class="keyword">if</span> the base <span class="keyword">is</span> set<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>       BTC_Ex<span class="sign">.</span><strong>Set_Rate</strong>  <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">,</span> Bitcoin<span class="sign">,</span> USD_to_BTC<span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo24">Set_Base</a>
+    * <a href="#robo10">Exchange.Currency_Exchange</a>/<a href="#robo20">Base_Is_Set</a>
+</pre>
+<p class="item_name">NOTES</p>
+<pre>    As a courtesy, the inverse of the exchange rate is also added to the
+    exchange so both USD:GBP and GBP:USD will be accessible.  I recommend
+    adding the inverse explicitly if it's different than 1.0 / <a href="#robo23">Rate</a>.
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Add or update a new exchange rate into the current exchange.
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/cashe-exchange.ads with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2023-07-23 18:40:45</p>
+</div> <!-- footer -->
+</body>
+</html>

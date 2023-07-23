@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>cashe-money_handling.ads</title>
+<!-- Source: ./src/cashe-money_handling.ads -->
+<!-- Generated with ROBODoc Version 4.99.44 (May  3 2023) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">Ada Cashe Library code documentation</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./sources.html#top">Source files</a>
+<a class="menuitem" href="./index.html#top">Index</a>
+<a class="menuitem" href="./robo_classes.html#top">Classes</a>
+<a class="menuitem" href="./robo_constants.html#top">Constants</a>
+<a class="menuitem" href="./robo_exceptions.html#top">Exceptions</a>
+<a class="menuitem" href="./robo_subprograms.html#top">Subprograms</a>
+<a class="menuitem" href="./robo_packages.html#top">Packages</a>
+<a class="menuitem" href="./robo_Methods.html#top">Methods</a>
+<a class="menuitem" href="./robo_records.html#top">Records</a>
+<a class="menuitem" href="./robo_types.html#top">Types</a>
+</div> <!-- navigation -->
+<div id="content">
+<h3>TABLE OF CONTENTS</h3>
+<ul>
+<li>1. <a href="#robo3">Cashe/Money_Handling</a></li>
+<ul>
+<li>1.1. <a href="#robo11">Money_Handling/Money_Handling.Money</a></li>
+<ul>
+<li>1.1.1. <a href="#robo26">Money_Handling.Money/As_Major</a></li>
+<li>1.1.2. <a href="#robo27">Money_Handling.Money/As_Minor</a></li>
+<li>1.1.3. <a href="#robo28">Money_Handling.Money/Currency_Code</a></li>
+<li>1.1.4. <a href="#robo29">Money_Handling.Money/Currency_Name</a></li>
+<li>1.1.5. <a href="#robo30">Money_Handling.Money/Currency_Symbol</a></li>
+<li>1.1.6. <a href="#robo31">Money_Handling.Money/Currency_Unit</a></li>
+<li>1.1.7. <a href="#robo32">Money_Handling.Money/Full_Precision</a></li>
+<li>1.1.8. <a href="#robo33">Money_Handling.Money/Get_Currency</a></li>
+<li>1.1.9. <a href="#robo34">Money_Handling.Money/Is_Custom_Currency</a></li>
+<li>1.1.10. <a href="#robo35">Money_Handling.Money/Is_Negative</a></li>
+<li>1.1.11. <a href="#robo36">Money_Handling.Money/Is_Positive</a></li>
+<li>1.1.12. <a href="#robo37">Money_Handling.Money/Is_Zero</a></li>
+<li>1.1.13. <a href="#robo38">Money_Handling.Money/Round</a></li>
+<li>1.1.14. <a href="#robo39">Money_Handling.Money/Same_Currency</a></li>
+</ul>
+<li>1.2. <a href="#robo44">Money_Handling/Money_Handling.Currency_Mismatch</a></li>
+<li>1.3. <a href="#robo45">Money_Handling/Money_Handling.Division_By_Zero</a></li>
+<li>1.4. <a href="#robo49">Money_Handling/Money_Handling.abs</a></li>
+<li>1.5. <a href="#robo50">Money_Handling/Money_Handling.Addition</a></li>
+<li>1.6. <a href="#robo51">Money_Handling/Money_Handling.Division</a></li>
+<li>1.7. <a href="#robo52">Money_Handling/Money_Handling.Equal_To</a></li>
+<li>1.8. <a href="#robo53">Money_Handling/Money_Handling.From_Major</a></li>
+<li>1.9. <a href="#robo54">Money_Handling/Money_Handling.From_Minor</a></li>
+<li>1.10. <a href="#robo55">Money_Handling/Money_Handling.Greater_Than</a></li>
+<li>1.11. <a href="#robo56">Money_Handling/Money_Handling.Greater_Than_Equal_To</a></li>
+<li>1.12. <a href="#robo57">Money_Handling/Money_Handling.Less_Than</a></li>
+<li>1.13. <a href="#robo58">Money_Handling/Money_Handling.Less_Than_Equal_To</a></li>
+<li>1.14. <a href="#robo59">Money_Handling/Money_Handling.Multiplication</a></li>
+<li>1.15. <a href="#robo60">Money_Handling/Money_Handling.Print_Money</a></li>
+<li>1.16. <a href="#robo61">Money_Handling/Money_Handling.Subtraction</a></li>
+</ul>
+</ul>
+<hr />
+<a name="Cashe2fMoney5fHandling"></a>
+<a name="robo3"></a><h2>Cashe/Money_Handling [ Packages ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./cashe_ads.html#robo0">Cashe</a> ] [ <a href="./robo_packages.html#robo_top_of_doc">Packages</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    This package provides methods of defining custom currency and storing
+    currencies.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="keyword">package</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><strong>Money_Handling</strong> <span class="keyword">is</span>
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eMoney"></a>
+<a name="robo11"></a><h2>Money_Handling/Money_Handling.Money [ Classes ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_classes.html#robo_top_of_doc">Classes</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    An immutable datatype that can be created and stored 
+    (or just created on the spot) using various combinations of
+    From_Major and From_Minor.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">type</span> Money <span class="keyword">is</span> <span class="keyword">tagged</span> <span class="keyword">private</span> <span class="keyword">with</span> Put_Image <span class="sign">=</span><span class="sign">&gt;</span> Print_Money<span class="sign">;</span>
+</pre>
+<p class="item_name">USAGE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>   A_Float  <span class="sign">:</span> Long_Long_Float <span class="sign">:</span><span class="sign">=</span> 14<span class="sign">.</span>1190004014938372284932918<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_US0 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="quote">"-2000.005"</span><span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_US1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_US2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>87500<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_US3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>0<span class="sign">.</span>0<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_YEN <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="quote">"12345"</span><span class="sign">,</span> <span class="quote">"JPY"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_EU1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>2489<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"EUR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_EU2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>248500<span class="sign">,</span> <span class="quote">"EUR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_AUD <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>50<span class="sign">,</span> <span class="quote">"AUD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_OMR <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>9383314<span class="sign">,</span> <span class="quote">"OMR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_BTC <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>5000000000<span class="sign">,</span> Bitcoin<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_Wei <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>1000000000000000000<span class="sign">,</span> Ethereum<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_We2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> Test_Wei<span class="sign">.</span><a href="#robo38">Round</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_RAD <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>1234<span class="sign">,</span> Radio<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>   Test_ADA <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>45678<span class="sign">.</span>123456789098765<span class="sign">,</span> Cardano<span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>  * <a href="#robo3">Money_Handling</a>/<a href="#robo53">Money_Handling.From_Major</a>
+  * <a href="#robo3">Money_Handling</a>/<a href="#robo54">Money_Handling.From_Minor</a> 
+</pre>
+<p class="item_name">METHODS</p>
+<pre>  * <strong>Money_Handling.Money</strong>/<a href="#robo39">Same_Currency</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo34">Is_Custom_Currency</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo33">Get_Currency</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo29">Currency_Name</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo30">Currency_Symbol</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo31">Currency_Unit</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo37">Is_Zero</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo36">Is_Positive</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo35">Is_Negative</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo38">Round</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo32">Full_Precision</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo26">As_Major</a>
+  * <strong>Money_Handling.Money</strong>/<a href="#robo27">As_Minor</a>
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fAs5fMajor"></a>
+<a name="robo26"></a><h2>Money_Handling.Money/As_Major [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>As_Major</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Decimal<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    USD <span class="sign">:</span> Money   <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>2000<span class="sign">.</span>005<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    MU  <span class="sign">:</span> Decimal <span class="sign">:</span><span class="sign">=</span> USD<span class="sign">.</span><strong>As_Major</strong><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span> contains 2000<span class="sign">.</span>00
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo4">Cashe.Decimal</a>
+    <a href="#robo11">Money_Handling.Money</a>/<a href="#robo38">Round</a>
+    <a href="#robo11">Money_Handling.Money</a>/<a href="#robo32">Full_Precision</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Returns the item in major format, rounded with banker's rounding.
+    If full precision is needed, use <a href="#robo11">Money_Handling.Money</a>/<a href="#robo32">Full_Precision</a>
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo4">Cashe.Decimal</a> - Money's value, rounded to minor unit.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fAs5fMinor"></a>
+<a name="robo27"></a><h2>Money_Handling.Money/As_Minor [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>As_Minor</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Decimal_Minor<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    USD <span class="sign">:</span> Money         <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>2000<span class="sign">.</span>005<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    MU  <span class="sign">:</span> Decimal_Minor <span class="sign">:</span><span class="sign">=</span> USD<span class="sign">.</span><strong>As_Minor</strong><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span> contains 200000
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo6">Cashe.Decimal_Minor</a>
+    <a href="#robo11">Money_Handling.Money</a>/<a href="#robo38">Round</a>
+    <a href="#robo11">Money_Handling.Money</a>/<a href="#robo32">Full_Precision</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Returns the item's minor unit, rounded with banker's rounding.
+    If full precision is needed, use <a href="#robo11">Money_Handling.Money</a>/<a href="#robo32">Full_Precision</a>
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo6">Cashe.Decimal_Minor</a> - Money's value, rounded to minor unit.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fCurrency5fCode"></a>
+<a name="robo28"></a><h2>Money_Handling.Money/Currency_Code [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Currency_Code</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Put_Line <span class="sign">(</span><span class="quote">"Currency is "</span> <span class="sign">&amp;</span> My_Money<span class="sign">.</span><strong>Currency_Code</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the code of the Money's currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - code of money's currency.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fCurrency5fName"></a>
+<a name="robo29"></a><h2>Money_Handling.Money/Currency_Name [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Currency_Name</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Put_Line <span class="sign">(</span><span class="quote">"Currency is "</span> <span class="sign">&amp;</span> My_Money<span class="sign">.</span><strong>Currency_Name</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the name of the Money's currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - name of money's currency.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fCurrency5fSymbol"></a>
+<a name="robo30"></a><h2>Money_Handling.Money/Currency_Symbol [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Currency_Symbol</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Put_Line <span class="sign">(</span><span class="quote">"Currency is "</span> <span class="sign">&amp;</span> My_Money<span class="sign">.</span><strong>Currency_Symbol</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the symbol of the Money's currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - symbol of money's currency.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fCurrency5fUnit"></a>
+<a name="robo31"></a><h2>Money_Handling.Money/Currency_Unit [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Currency_Unit</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Natural<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Put_Line <span class="sign">(</span><span class="quote">"This currency has:"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Money<span class="sign">.</span>Minor_Unit <span class="sign">&gt;</span> 0 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>My_Money<span class="sign">.</span>Minor_Unit<span class="squote">'Image &amp; " decimal places");
+   --    else
+   --       Put_Line ("No decimal places");
+   --    end if;
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the minor unit of the Money's currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Natural - minor unit of money's currency.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fFull5fPrecision"></a>
+<a name="robo32"></a><h2>Money_Handling.Money/Full_Precision [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Full_Precision</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Decimal <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>7<span class="sign">.</span>22<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="sign">*</span> 77<span class="sign">.</span>555321<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Assert <span class="sign">(</span>USD<span class="sign">.</span><strong>Full_Precision</strong> <span class="sign">=</span> 559<span class="sign">.</span>94941762<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo4">Cashe.Decimal</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    When printing or comparing money, it is always rounded to the money's
+    minor unit.  This function returns the full precision decimal of the
+    current money's value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo4">Cashe.Decimal</a> - Full precision of money's value.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fGet5fCurrency"></a>
+<a name="robo33"></a><h2>Money_Handling.Money/Get_Currency [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Get_Currency</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a> <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       Result <span class="sign">:</span> Currency_Data <span class="sign">:</span><span class="sign">=</span> My_Money<span class="sign">.</span><strong>Get_Currency</strong><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">case</span> Result<span class="sign">.</span>Which_Currency_Type <span class="keyword">is</span>
+   <span class="sign">-</span><span class="sign">-</span>          <span class="keyword">when</span> Type_Custom_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"Custom Currency is "</span> <span class="sign">&amp;</span> Result<span class="sign">.</span>Custom_Code<span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo13">Name</a><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>          <span class="keyword">when</span> Type_ISO_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"ISO Currency is "</span> <span class="sign">&amp;</span> Result<span class="sign">.</span>ISO_Code<span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo13">Name</a><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"And Numeric is "</span> <span class="sign">&amp;</span> Result<span class="sign">.</span>ISO_Code<span class="sign">.</span>Numeric<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">case</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="./cashe-currency_handling_ads.html#robo1">Currency_Handling</a>/<a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieve the actual currency belonging to the money.
+    Results are stored in a special "holder" called Currency_Data.
+    Unless you specifically need the currency, you are better off using
+    methods such as:
+    * <a href="#robo11">Money_Handling.Money</a>/<a href="#robo29">Currency_Name</a>
+    * <a href="#robo11">Money_Handling.Money</a>/<a href="#robo30">Currency_Symbol</a>
+    * <a href="#robo11">Money_Handling.Money</a>/<a href="#robo31">Currency_Unit</a>
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="./cashe-currency_handling_ads.html#robo1">Currency_Handling</a>/<a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a> - Money's currency
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fIs5fCustom5fCurrency"></a>
+<a name="robo34"></a><h2>Money_Handling.Money/Is_Custom_Currency [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Is_Custom_Currency</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Money<span class="sign">.</span>Custom_Currency <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"Using a custom currency."</span><span class="sign">)</span><span class="sign">;</span> 
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if the money contains the same currency as another money.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean - True if currency is custom or not, as opposed to an ISO's.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fIs5fNegative"></a>
+<a name="robo35"></a><h2>Money_Handling.Money/Is_Negative [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Is_Negative</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Money<span class="sign">.</span><strong>Is_Negative</strong> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"I'm in debt!"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determines if the money is less than 0
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean:
+       * True if value of money is less than 0
+       * False if value is not less than 0
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fIs5fPositive"></a>
+<a name="robo36"></a><h2>Money_Handling.Money/Is_Positive [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Is_Positive</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Money<span class="sign">.</span><strong>Is_Positive</strong> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"I have money!"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determines if the money is greater than 0.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean:
+       * True if value of money is greater than 0.
+       * False if value is not greater than 0. 
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fIs5fZero"></a>
+<a name="robo37"></a><h2>Money_Handling.Money/Is_Zero [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Is_Zero</strong> <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_Money<span class="sign">.</span><strong>Is_Zero</strong> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"I'm broke!"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determines if the money contains a zero value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean:
+       * True if value of money is 0.
+       * False if value is not 0. 
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fRound"></a>
+<a name="robo38"></a><h2>Money_Handling.Money/Round [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Round</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The current money to round
+       By <span class="sign">:</span> Natural<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The precision which to round to<span class="sign">.</span>
+       Method <span class="sign">:</span> Round_Method <span class="sign">:</span><span class="sign">=</span> Half_Even
+       <span class="sign">-</span><span class="sign">-</span>  The method <span class="keyword">of</span> rounding<span class="sign">.</span>  Default <span class="keyword">is</span> Half_Even aka Banker<span class="squote">'s Rounding.
+      )
+   return Money with pre =&gt; By &lt;= Max_Precision;
+   function <strong>Round</strong>
+      (This : Money;
+       --  The current money to round
+       Method : Round_Method := Half_Even
+       --  The method of rounding.  Default is Half_Even aka Banker'</span>s Rounding<span class="sign">.</span>
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    By     - The precision which to round to.  Leave parameter out and
+             it will round to the minor unit of the money's currency.
+    Method - The method which to round.  The default is Half_Even aka
+             Banker's Rounding.  Half_Up is the kind of rounding you learn
+             in Math class.
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       Test_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>2000<span class="sign">.</span>005<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Assert <span class="sign">(</span>Test_Money<span class="sign">.</span><strong>Round</strong> <span class="sign">(</span>2<span class="sign">)</span> <span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>2000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       Assert <span class="sign">(</span>Test_Money<span class="sign">.</span><strong>Round</strong> <span class="sign">(</span>2<span class="sign">,</span> Half_Up<span class="sign">)</span> <span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>               From_Major <span class="sign">(</span><span class="sign">-</span>2000<span class="sign">.</span>01<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">-</span><span class="sign">-</span>  Do <span class="keyword">not</span> specify precision <span class="keyword">and</span> it will default to minor unit
+   <span class="sign">-</span><span class="sign">-</span>       Assert <span class="sign">(</span>Test_Money<span class="sign">.</span><strong>Round</strong> <span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>2000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo7">Cashe.Round_Method</a>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    <strong>Round</strong> the value of a money object to a given precision
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Money with a rounded value.
+</pre>
+
+<hr />
+<a name="Money5fHandling2eMoney2fSame5fCurrency"></a>
+<a name="robo39"></a><h2>Money_Handling.Money/Same_Currency [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo11">Money_Handling.Money</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <strong>Same_Currency</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> Money<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The current money
+       Item <span class="sign">:</span> Money
+       <span class="sign">-</span><span class="sign">-</span>  The Money to test against the current money<span class="sign">.</span>
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Boolean <span class="keyword">with</span> Inline<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Item - The Money to test against the current money.
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">if</span> My_USD<span class="sign">.</span><strong>Same_Currency</strong> <span class="sign">(</span>My_USD2<span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span><span class="quote">"Same Currency."</span><span class="sign">)</span><span class="sign">;</span> 
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if the money contains the same currency as another money.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean - True if currency of both monies are identical.  False if
+              they are different.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eCurrency5fMismatch"></a>
+<a name="robo44"></a><h2>Money_Handling/Money_Handling.Currency_Mismatch [ Exceptions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_exceptions.html#robo_top_of_doc">Exceptions</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    Raised if operations on two monies have different currencies.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   Currency_Mismatch    <span class="sign">:</span> <span class="keyword">exception</span><span class="sign">;</span>
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eDivision5fBy5fZero"></a>
+<a name="robo45"></a><h2>Money_Handling/Money_Handling.Division_By_Zero [ Exceptions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_exceptions.html#robo_top_of_doc">Exceptions</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    Raised on division-by-zero
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   Division_By_Zero     <span class="sign">:</span> <span class="keyword">exception</span><span class="sign">;</span>
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eabs"></a>
+<a name="robo49"></a><h2>Money_Handling/Money_Handling.abs [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"abs"</span> <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>120<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD2 <span class="sign">:</span> money <span class="sign">:</span><span class="sign">=</span> <span class="keyword">abs</span> USD1<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD1<span class="squote">'Image); --  $-120.00
+   --       Put_Line (USD2'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="sign">$</span> 120<span class="sign">.</span>00
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Calculate the absolute value of some money.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Absolute value of the money.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eAddition"></a>
+<a name="robo50"></a><h2>Money_Handling/Money_Handling.Addition [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"+"</span>   <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"+"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"+"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Minor<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>7<span class="sign">.</span>22<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="sign">+</span> From_Major <span class="sign">(</span>0<span class="sign">.</span>98<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD1 <span class="sign">+</span> 10<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD2 <span class="sign">+</span> 12<span class="sign">.</span>34<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD1<span class="squote">'Image); --  $ 15.20
+   --       Put_Line (USD2'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="sign">$</span> 25<span class="sign">.</span>20
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD3<span class="squote">'Image); --  $ 37.54
+   --    end;
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Allows addition between money types.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Sum of the addition.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eDivision"></a>
+<a name="robo51"></a><h2>Money_Handling/Money_Handling.Division [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+    * <a href="#robo3">Money_Handling</a>/<a href="#robo45">Money_Handling.Division_By_Zero</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"/"</span>   <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> <span class="sign">(</span>Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span> <span class="keyword">raise</span> Currency_Mismatch<span class="sign">)</span>
+                   <span class="keyword">and</span> <span class="keyword">then</span> <span class="sign">(</span><span class="sign">(</span><span class="keyword">not</span> Right<span class="sign">.</span><a href="#robo37">Is_Zero</a><span class="sign">)</span> <span class="keyword">or</span>
+                   <span class="keyword">else</span> <span class="keyword">raise</span> Division_By_Zero<span class="sign">)</span><span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"/"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Right <span class="sign">/</span><span class="sign">=</span> 0<span class="sign">.</span>0 <span class="keyword">or</span> <span class="keyword">else</span> <span class="keyword">raise</span> Division_By_Zero<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"/"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Minor<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Right <span class="sign">/</span><span class="sign">=</span> 0 <span class="keyword">or</span> <span class="keyword">else</span> <span class="keyword">raise</span> Division_By_Zero<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>120<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="sign">/</span> From_Major <span class="sign">(</span>15<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD1 <span class="sign">/</span> 10<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD2 <span class="sign">/</span> 0<span class="sign">.</span>25<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD1<span class="squote">'Image); --  $ 8.00
+   --       Put_Line (USD2'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="sign">$</span> 0<span class="sign">.</span>80
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD3<span class="squote">'Image); --  $ 3.20
+   --    end;
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Allows division between money types.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Quotient of the division.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eEqual5fTo"></a>
+<a name="robo52"></a><h2>Money_Handling/Money_Handling.Equal_To [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"="</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"="</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Major<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Money <span class="sign">=</span> From_Major <span class="sign">(</span>1000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is equal to $1000."</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&gt;</span><span class="sign">=</span> 900<span class="sign">.</span>00 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is equal to $900"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">=</span> 500 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is equal to $500"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if a given money is equal to another value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean: Money = X
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eFrom5fMajor"></a>
+<a name="robo53"></a><h2>Money_Handling/Money_Handling.From_Major [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * Constraint error if the string is not a decimal or integer.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> decimal form to set the Money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a>
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> decimal form to set the Money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+             <span class="sign">-</span><span class="sign">-</span>  the currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> decimal form to set the Money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> decimal form to set the Money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Major<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> whole number form to set the Money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a>
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Major<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> whole number form to set the Money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Major<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> whole number form to set the Money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount          <span class="sign">:</span> Decimal_Major<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> whole number form to set the Money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount        <span class="sign">:</span> String<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount <span class="keyword">in</span> as a numerical string to set the money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a>
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount          <span class="sign">:</span> String<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount as a numerical string to set the money
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a>
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount          <span class="sign">:</span> String<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount as a numerical string to set the money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Major
+            <span class="sign">(</span>Amount          <span class="sign">:</span> String<span class="sign">;</span>
+             <span class="sign">-</span><span class="sign">-</span>  Amount as a numerical string to set the money
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code
+             <span class="sign">-</span><span class="sign">-</span>  The currency to <span class="keyword">use</span>
+            <span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Amount - The amount to set. For $10 use: 10.00, 10, "10", "10.00"
+    Currency_Used - The currency this money will use. Either custom or ISO
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="sign">-</span><span class="sign">-</span>  Create from ISO currencies
+   <span class="sign">-</span><span class="sign">-</span>    US0 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="quote">"-2000.005"</span><span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    US1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    US3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>0<span class="sign">.</span>0<span class="sign">,</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>From_Code <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    YEN <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="quote">"12345"</span><span class="sign">,</span> <span class="quote">"JPY"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    EU  <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>2489<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"EUR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    AUD <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span><span class="sign">-</span>50<span class="sign">,</span> <span class="quote">"AUD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="sign">-</span><span class="sign">-</span>  Create from custom currencies
+   <span class="sign">-</span><span class="sign">-</span>    Cardano <span class="sign">:</span> <span class="keyword">constant</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>     <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo48">Currency_Handling.Create</a>
+   <span class="sign">-</span><span class="sign">-</span>        <span class="sign">(</span><a href="./cashe-currency_handling_ads.html#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"ADA"</span><span class="sign">,</span> Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 15<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>        <a href="./cashe-currency_handling_ads.html#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Cardano"</span><span class="sign">,</span> <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"₳"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Radio <span class="sign">:</span> <span class="keyword">constant</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>     <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo48">Currency_Handling.Create</a>
+   <span class="sign">-</span><span class="sign">-</span>        <span class="sign">(</span><a href="./cashe-currency_handling_ads.html#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"RAD"</span><span class="sign">,</span> Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 0<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>        <a href="./cashe-currency_handling_ads.html#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Rad Currency"</span><span class="sign">,</span> <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"☢"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    RAD <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>1234<span class="sign">,</span> Radio<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    AD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>45678<span class="sign">.</span>123456789098765<span class="sign">,</span> Cardano<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="sign">-</span><span class="sign">-</span>  Must convert floats using To_Decimal <span class="keyword">with</span> your own precision<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>    A_Float <span class="sign">:</span> Long_Long_Float <span class="sign">:</span><span class="sign">=</span> 14<span class="sign">.</span>1190004014938372284932918<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    US4 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>To_Decimal <span class="sign">(</span>A_Float<span class="sign">,</span> 2<span class="sign">)</span><span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">NOTES</p>
+<pre>    Be aware that there's no From_Major for floats. <a href="./cashe-exchange_ads.html#robo22">Convert</a> to Decimal!
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Create a new money object from a provided major unit.  Either as a
+    decimal, integer, or string.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - The resulting money.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eFrom5fMinor"></a>
+<a name="robo54"></a><h2>Money_Handling/Money_Handling.From_Minor [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * Constraint error if the string is not a decimal or integer.
+    * <a href="./cashe_ads.html#robo0">Cashe</a>/<a href="./cashe_ads.html#robo43">Cashe.Minor_Unit_Too_Large</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Minor<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a><span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Minor<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Minor<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> Decimal_Minor<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> String<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo40">Currency_Handling.Currency_Data</a><span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> String<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> <a href="./cashe-currency_handling_ads.html#robo9">Currency_Handling.Custom_Currency</a><span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> String<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> From_Minor
+            <span class="sign">(</span>Amount        <span class="sign">:</span> String<span class="sign">;</span>
+             Currency_Used <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Alphabetic_Code<span class="sign">)</span>
+   <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Amount - The amount to set in minor units. For $10 use: 1000, "1000"
+    Currency_Used - The currency this money will use. Either custom or ISO
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="sign">-</span><span class="sign">-</span>  Create from ISO currencies
+   <span class="sign">-</span><span class="sign">-</span>    Test_US2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>87500<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Test_EU2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>248500<span class="sign">,</span> <span class="quote">"EUR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Test_OMR <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>9383314<span class="sign">,</span> <span class="quote">"OMR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="sign">-</span><span class="sign">-</span>  Create from Custom Currencies
+   <span class="sign">-</span><span class="sign">-</span>    Bitcoin <span class="sign">:</span> <span class="keyword">constant</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>     <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo48">Currency_Handling.Create</a>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">(</span><a href="./cashe-currency_handling_ads.html#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"BTC"</span><span class="sign">,</span> Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 8<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>        <a href="./cashe-currency_handling_ads.html#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Bitcoin"</span><span class="sign">,</span> <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"฿"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Ethereum <span class="sign">:</span> <span class="keyword">constant</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>     <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="./cashe-currency_handling_ads.html#robo48">Currency_Handling.Create</a>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="sign">(</span><a href="./cashe-currency_handling_ads.html#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"ETH"</span><span class="sign">,</span> Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 18<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>        <a href="./cashe-currency_handling_ads.html#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Ether"</span><span class="sign">,</span> <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"Ξ"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Test_BTC <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>5000000000<span class="sign">,</span> Bitcoin<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    Test_Wei <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Minor <span class="sign">(</span>1000000000000000000<span class="sign">,</span> Ethereum<span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Create a new money object from a provided minor unit.  Either as an
+    integer, or string.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - The resulting money.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eGreater5fThan"></a>
+<a name="robo55"></a><h2>Money_Handling/Money_Handling.Greater_Than [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"&gt;"</span>  <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&gt;"</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&gt;"</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Major<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Money <span class="sign">&gt;</span> From_Major <span class="sign">(</span>1000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than $1000."</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&gt;</span> 900<span class="sign">.</span>00 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than $900"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&gt;</span> 500 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than $500"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if a given money is greater than another value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean: Money &gt; X 
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eGreater5fThan5fEqual5fTo"></a>
+<a name="robo56"></a><h2>Money_Handling/Money_Handling.Greater_Than_Equal_To [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"&gt;="</span> <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">overriding</span> <span class="keyword">function</span> <span class="quote">"="</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&gt;="</span> <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&gt;="</span> <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Major<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Money <span class="sign">&gt;</span><span class="sign">=</span> From_Major <span class="sign">(</span>1000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than or equal to $1000."</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&gt;</span><span class="sign">=</span> 900<span class="sign">.</span>00 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than or equal to $900"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&gt;</span><span class="sign">=</span> 500 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is greater than or equal to $500"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if a given money is greater than or equal to another value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean: Money &gt;= X 
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eLess5fThan"></a>
+<a name="robo57"></a><h2>Money_Handling/Money_Handling.Less_Than [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"&lt;"</span>  <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&lt;"</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&lt;"</span>  <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Major<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Money <span class="sign">&lt;</span> From_Major <span class="sign">(</span>1000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than $1000."</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&lt;</span> 900<span class="sign">.</span>00 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than $900"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&lt;</span> 500 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than $500"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if a given money is less than another value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean: Money &lt; X 
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eLess5fThan5fEqual5fTo"></a>
+<a name="robo58"></a><h2>Money_Handling/Money_Handling.Less_Than_Equal_To [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"&lt;="</span> <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Boolean
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&lt;="</span> <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"&lt;="</span> <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Major<span class="sign">)</span> <span class="keyword">return</span> Boolean<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Money <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>875<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">if</span> My_Money <span class="sign">&lt;</span><span class="sign">=</span> From_Major <span class="sign">(</span>1000<span class="sign">.</span>00<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than or equal to $1000."</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&lt;</span><span class="sign">=</span> 900<span class="sign">.</span>00 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than or equal to $900"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">elsif</span> My_Money <span class="sign">&lt;</span><span class="sign">=</span> 500 <span class="keyword">then</span>
+   <span class="sign">-</span><span class="sign">-</span>          Put_Line <span class="sign">(</span><span class="quote">"Money is less than or equal to $500"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">if</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Determine if a given money is less than or equal to another value.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Boolean: Money &lt;= X 
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eMultiplication"></a>
+<a name="robo59"></a><h2>Money_Handling/Money_Handling.Multiplication [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"*"</span>   <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"*"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"*"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Minor<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>7<span class="sign">.</span>20<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="sign">*</span> From_Major <span class="sign">(</span>1<span class="sign">.</span>90<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD1 <span class="sign">*</span> 10<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD2 <span class="sign">*</span> 12<span class="sign">.</span>34<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD1<span class="squote">'Image); --  $ 13.68
+   --       Put_Line (USD2'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="sign">$</span> 136<span class="sign">.</span>8
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD3<span class="squote">'Image); --  $ 1688.11
+   --    end;
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Allows multiplication between money types.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Product of the multiplication.
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2ePrint5fMoney"></a>
+<a name="robo60"></a><h2>Money_Handling/Money_Handling.Print_Money [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> Print_Money
+      <span class="sign">(</span>Buffer <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Ada<span class="sign">.</span>Strings<span class="sign">.</span>Text_Buffers<span class="sign">.</span>Root_Buffer_Type<span class="squote">'Class;
+       Value  : Money);
+</pre>
+<p class="item_name">USAGE</p>
+<pre class="source">   --    --  Call this via '</span>Image attribute<span class="sign">,</span> e<span class="sign">.</span>g<span class="sign">.</span>
+   <span class="sign">-</span><span class="sign">-</span>    Printed <span class="sign">:</span> String <span class="sign">:</span><span class="sign">=</span> My_Money<span class="squote">'Image;
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   --    declare
+   --       -- Create a custom currency
+   --       King_Currency : constant Custom_Currency :=
+   --          <a href="./cashe_ads.html#robo0">Cashe</a>.<a href="./cashe-currency_handling_ads.html#robo48">Currency_Handling.Create</a>
+   --             (<a href="./cashe-currency_handling_ads.html#robo12">Code</a> =&gt; "KNG", Minor_Unit =&gt; 2,
+   --              <a href="./cashe-currency_handling_ads.html#robo13">Name</a> =&gt; "King Currency", <a href="./cashe-currency_handling_ads.html#robo18">Symbol</a> =&gt; "K");
+   --       KNG : Money := From_Major (9001.99, King_Currency);
+   --       USD : Money := From_Major (875.00, "USD");
+   --       AUD : Money := From_Major (-50, "AUD");
+   --    begin
+   --       Put_Line (KNG'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="quote">"K 9001.99"</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD<span class="squote">'Image); --  "$ 875.00"
+   --       Put_Line (AUD'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="quote">"$-50.00"</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">TODO</p>
+<pre>    Allowing setting format e.g. "My_Money.Format('en_US')"
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Print the current money in format "¤[-]#.##".
+</pre>
+
+<hr />
+<a name="Money5fHandling2fMoney5fHandling2eSubtraction"></a>
+<a name="robo61"></a><h2>Money_Handling/Money_Handling.Subtraction [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo3">Money_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">ERRORS</p>
+<pre>    * <a href="#robo3">Money_Handling</a>/<a href="#robo44">Money_Handling.Currency_Mismatch</a>
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> <span class="quote">"-"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"-"</span>   <span class="sign">(</span>Left<span class="sign">,</span> Right <span class="sign">:</span> Money<span class="sign">)</span> <span class="keyword">return</span> Money
+      <span class="keyword">with</span> Pre <span class="sign">=</span><span class="sign">&gt;</span> Left<span class="sign">.</span><a href="#robo39">Same_Currency</a> <span class="sign">(</span>Right<span class="sign">)</span> <span class="keyword">or</span> <span class="keyword">else</span>
+            <span class="keyword">raise</span> Currency_Mismatch<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"-"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+   <span class="keyword">function</span> <span class="quote">"-"</span>   <span class="sign">(</span>Left <span class="sign">:</span> Money<span class="sign">;</span> Right <span class="sign">:</span> Decimal_Minor<span class="sign">)</span> <span class="keyword">return</span> Money<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD1 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> From_Major <span class="sign">(</span>107<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span> <span class="sign">-</span> From_Major <span class="sign">(</span>0<span class="sign">.</span>98<span class="sign">,</span> <span class="quote">"USD"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD2 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD1 <span class="sign">-</span> 10<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       USD3 <span class="sign">:</span> Money <span class="sign">:</span><span class="sign">=</span> USD2 <span class="sign">-</span> 12<span class="sign">.</span>34<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD1<span class="squote">'Image); --  $ 106.02
+   --       Put_Line (USD2'</span>Image<span class="sign">)</span><span class="sign">;</span> <span class="sign">-</span><span class="sign">-</span>  <span class="sign">$</span> 96<span class="sign">.</span>02
+   <span class="sign">-</span><span class="sign">-</span>       Put_Line <span class="sign">(</span>USD3<span class="squote">'Image); --  $ 83.68
+   --    end;
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Allows subtraction between money types.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo3">Money_Handling</a>/<a href="#robo11">Money_Handling.Money</a> - Remainder of the subtraction.
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/cashe-money_handling.ads with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2023-07-23 18:40:45</p>
+</div> <!-- footer -->
+</body>
+</html>

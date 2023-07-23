@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>cashe-currency_handling.ads</title>
+<!-- Source: ./src/cashe-currency_handling.ads -->
+<!-- Generated with ROBODoc Version 4.99.44 (May  3 2023) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc">Ada Cashe Library code documentation</a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./sources.html#top">Source files</a>
+<a class="menuitem" href="./index.html#top">Index</a>
+<a class="menuitem" href="./robo_classes.html#top">Classes</a>
+<a class="menuitem" href="./robo_constants.html#top">Constants</a>
+<a class="menuitem" href="./robo_exceptions.html#top">Exceptions</a>
+<a class="menuitem" href="./robo_subprograms.html#top">Subprograms</a>
+<a class="menuitem" href="./robo_packages.html#top">Packages</a>
+<a class="menuitem" href="./robo_Methods.html#top">Methods</a>
+<a class="menuitem" href="./robo_records.html#top">Records</a>
+<a class="menuitem" href="./robo_types.html#top">Types</a>
+</div> <!-- navigation -->
+<div id="content">
+<h3>TABLE OF CONTENTS</h3>
+<ul>
+<li>1. <a href="#robo1">Cashe/Currency_Handling</a></li>
+<ul>
+<li>1.1. <a href="#robo8">Currency_Handling/Currency_Handling.Currency_Type</a></li>
+<li>1.2. <a href="#robo9">Currency_Handling/Currency_Handling.Custom_Currency</a></li>
+<ul>
+<li>1.2.1. <a href="#robo12">Currency_Handling.Custom_Currency/Code</a></li>
+<li>1.2.2. <a href="#robo13">Currency_Handling.Custom_Currency/Name</a></li>
+<li>1.2.3. <a href="#robo14">Currency_Handling.Custom_Currency/Set_Code</a></li>
+<li>1.2.4. <a href="#robo15">Currency_Handling.Custom_Currency/Set_Name</a></li>
+<li>1.2.5. <a href="#robo16">Currency_Handling.Custom_Currency/Set_Symbol</a></li>
+<li>1.2.6. <a href="#robo17">Currency_Handling.Custom_Currency/Set_Unit</a></li>
+<li>1.2.7. <a href="#robo18">Currency_Handling.Custom_Currency/Symbol</a></li>
+<li>1.2.8. <a href="#robo19">Currency_Handling.Custom_Currency/Unit</a></li>
+</ul>
+<li>1.3. <a href="#robo40">Currency_Handling/Currency_Handling.Currency_Data</a></li>
+<li>1.4. <a href="#robo48">Currency_Handling/Currency_Handling.Create</a></li>
+</ul>
+</ul>
+<hr />
+<a name="Cashe2fCurrency5fHandling"></a>
+<a name="robo1"></a><h2>Cashe/Currency_Handling [ Packages ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./cashe_ads.html#robo0">Cashe</a> ] [ <a href="./robo_packages.html#robo_top_of_doc">Packages</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    This package provides methods of defining custom currency and storing
+    currencies.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source"><span class="keyword">package</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><strong>Currency_Handling</strong> <span class="keyword">is</span>
+</pre>
+
+<hr />
+<a name="Currency5fHandling2fCurrency5fHandling2eCurrency5fType"></a>
+<a name="robo8"></a><h2>Currency_Handling/Currency_Handling.Currency_Type [ Types ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">Currency_Handling</a> ] [ <a href="./robo_types.html#robo_top_of_doc">Types</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    For Currency_Data variant record.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">type</span> Currency_Type <span class="keyword">is</span> <span class="sign">(</span>Type_Custom_Currency<span class="sign">,</span> Type_ISO_Currency<span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="#robo1">Currency_Handling</a>/<a href="#robo40">Currency_Handling.Currency_Data</a>
+</pre>
+
+<hr />
+<a name="Currency5fHandling2fCurrency5fHandling2eCustom5fCurrency"></a>
+<a name="robo9"></a><h2>Currency_Handling/Currency_Handling.Custom_Currency [ Classes ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">Currency_Handling</a> ] [ <a href="./robo_classes.html#robo_top_of_doc">Classes</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>    Allows for defining and storing a custom currency.  Member functions
+    can be used to retrieve information such as its code, minor units,
+    and symbols.  Can be initialized with the Create function.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">type</span> Custom_Currency <span class="keyword">is</span> <span class="keyword">tagged</span> <span class="keyword">private</span><span class="sign">;</span>
+</pre>
+<p class="item_name">USAGE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">with</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span> <span class="keyword">use</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    King <span class="sign">:</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span> Create <span class="sign">(</span><a href="#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"KNG"</span><span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 2<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      <a href="#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"King Currency"</span><span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      <a href="#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"K"</span><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">METHODS</p>
+<pre>  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo14">Set_Code</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo15">Set_Name</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo16">Set_Symbol</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo17">Set_Unit</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo12">Code</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo13">Name</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo18">Symbol</a>
+  * <strong>Currency_Handling.Custom_Currency</strong>/<a href="#robo19">Unit</a>
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fCode"></a>
+<a name="robo12"></a><h2>Currency_Handling.Custom_Currency/Code [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span>  <strong>Code</strong>   <span class="sign">(</span>This <span class="sign">:</span> Custom_Currency<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Ada<span class="sign">.</span>Text_Wide_Wide_IO<span class="sign">.</span>Put_Line <span class="sign">(</span>My_Currency<span class="sign">.</span><strong>Code</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the code of the custom currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - <strong>Code</strong> belonging to currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fName"></a>
+<a name="robo13"></a><h2>Currency_Handling.Custom_Currency/Name [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span>  <strong>Name</strong>   <span class="sign">(</span>This <span class="sign">:</span> Custom_Currency<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Ada<span class="sign">.</span>Text_Wide_Wide_IO<span class="sign">.</span>Put_Line <span class="sign">(</span>My_Currency<span class="sign">.</span><strong>Name</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the name of the custom currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - name belonging to currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fSet5fCode"></a>
+<a name="robo14"></a><h2>Currency_Handling.Custom_Currency/Set_Code [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Code</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Custom_Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The custom currency
+       Item <span class="sign">:</span> Wide_Wide_String
+       <span class="sign">-</span><span class="sign">-</span>  New code <span class="keyword">for</span> the custom currency
+      <span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Item - New code for the custom currency as wide_wide_string
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">with</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span> <span class="keyword">use</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur <span class="sign">:</span> Custom_Currency<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur<span class="sign">.</span><strong>Set_Code</strong> <span class="sign">(</span><span class="quote">"CUR"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    [Re]define the code associated with the currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fSet5fName"></a>
+<a name="robo15"></a><h2>Currency_Handling.Custom_Currency/Set_Name [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Name</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Custom_Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>   The custom currency<span class="sign">.</span>
+       Item <span class="sign">:</span> Wide_Wide_String
+       <span class="sign">-</span><span class="sign">-</span>  New name
+      <span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Item - New name as wide_wide_string
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">with</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span> <span class="keyword">use</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur <span class="sign">:</span> Custom_Currency<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur<span class="sign">.</span><strong>Set_Name</strong> <span class="sign">(</span><span class="quote">"Custom Currency"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    [Re]define the name of the custom currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fSet5fSymbol"></a>
+<a name="robo16"></a><h2>Currency_Handling.Custom_Currency/Set_Symbol [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Symbol</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Custom_Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>   The custom currency<span class="sign">.</span>
+       Item <span class="sign">:</span> Wide_Wide_String
+       <span class="sign">-</span><span class="sign">-</span>  New symbol
+      <span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Item - New symbol as wide_wide_string
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">with</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span> <span class="keyword">use</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur <span class="sign">:</span> Custom_Currency<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur<span class="sign">.</span><strong>Set_Symbol</strong> <span class="sign">(</span><span class="quote">"$"</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    [Re]define the symbol of the custom currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fSet5fUnit"></a>
+<a name="robo17"></a><h2>Currency_Handling.Custom_Currency/Set_Unit [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">procedure</span> <strong>Set_Unit</strong>
+      <span class="sign">(</span>This <span class="sign">:</span> <span class="keyword">in</span> <span class="keyword">out</span> Custom_Currency<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  The custom currency<span class="sign">.</span>
+       Item <span class="sign">:</span> Natural
+       <span class="sign">-</span><span class="sign">-</span>  New minor
+      <span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Item - New symbol unit as Natural
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">with</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span> <span class="keyword">use</span> <a href="./cashe_ads.html#robo0">Cashe</a><span class="sign">.</span><a href="#robo1">Currency_Handling</a><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur <span class="sign">:</span> Custom_Currency<span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Cur<span class="sign">.</span><strong>Set_Unit</strong> <span class="sign">(</span>2<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    [Re]define the minor unit of the custom currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fSymbol"></a>
+<a name="robo18"></a><h2>Currency_Handling.Custom_Currency/Symbol [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span>  <strong>Symbol</strong> <span class="sign">(</span>This <span class="sign">:</span> Custom_Currency<span class="sign">)</span> <span class="keyword">return</span> Wide_Wide_String<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    Ada<span class="sign">.</span>Text_Wide_Wide_IO<span class="sign">.</span>Put_Line <span class="sign">(</span>My_Currency<span class="sign">.</span><strong>Symbol</strong><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the symbol of the custom currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Wide_Wide_String - symbol belonging to currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2eCustom5fCurrency2fUnit"></a>
+<a name="robo19"></a><h2>Currency_Handling.Custom_Currency/Unit [ Methods ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo9">Currency_Handling.Custom_Currency</a> ] [ <a href="./robo_Methods.html#robo_top_of_doc">Methods</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span>  <strong>Unit</strong>   <span class="sign">(</span>This <span class="sign">:</span> Custom_Currency<span class="sign">)</span> <span class="keyword">return</span> Natural<span class="sign">;</span>
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    My_Unit <span class="sign">:</span> Natural <span class="sign">:</span><span class="sign">=</span> My_Currency<span class="sign">.</span><strong>Unit</strong><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Retrieves the code of the custom currency.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    Natural - Minor <strong>Unit</strong> belonging to currency.
+</pre>
+
+<hr />
+<a name="Currency5fHandling2fCurrency5fHandling2eCurrency5fData"></a>
+<a name="robo40"></a><h2>Currency_Handling/Currency_Handling.Currency_Data [ Records ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">Currency_Handling</a> ] [ <a href="./robo_records.html#robo_top_of_doc">Records</a> ]</p>
+<p class="item_name">DESCRIPTION</p>
+<pre>     A "holder" for both custom or non-custom currency, if needed.
+     Which kind of currency can be verified by accessing the object's
+     "Which_Currency_Data" later on.
+</pre>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">type</span> Currency_Data
+      <span class="sign">(</span>Which_Currency_Type <span class="sign">:</span> Currency_Type <span class="sign">:</span><span class="sign">=</span> Type_ISO_Currency<span class="sign">)</span>
+   <span class="keyword">is</span> <span class="keyword">record</span>
+      <span class="keyword">case</span> Which_Currency_Type <span class="keyword">is</span>
+         <span class="keyword">when</span> Type_Custom_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+            <span class="sign">-</span><span class="sign">-</span>  The custom currency that will be stored <span class="keyword">in</span> money<span class="sign">/</span>exchange<span class="sign">.</span>
+            Custom_Code <span class="sign">:</span> Custom_Currency<span class="sign">;</span>
+         <span class="keyword">when</span> Type_ISO_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+            <span class="sign">-</span><span class="sign">-</span>  The ISO currency that will be stored <span class="keyword">in</span> the money<span class="sign">/</span>exchange<span class="sign">.</span>
+            ISO_Code <span class="sign">:</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>Currency<span class="sign">;</span>
+      <span class="keyword">end</span> <span class="keyword">case</span><span class="sign">;</span>
+   <span class="keyword">end</span> <span class="keyword">record</span><span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    Which_Currency_Type: Which kind of currency?
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">declare</span>
+   <span class="sign">-</span><span class="sign">-</span>       My_Holder <span class="sign">:</span> Currency_Data <span class="sign">:</span><span class="sign">=</span>
+   <span class="sign">-</span><span class="sign">-</span>          <span class="sign">(</span>Which_Currency_Type <span class="sign">=</span><span class="sign">&gt;</span> Type_ISO_Currency<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>           ISO_Code            <span class="sign">=</span><span class="sign">&gt;</span> ISO<span class="sign">.</span>Currencies<span class="sign">.</span>From_Code <span class="sign">(</span><span class="quote">"USD"</span><span class="sign">)</span><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">begin</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">case</span> My_Holder<span class="sign">.</span>Which_Currency_Type <span class="keyword">is</span>
+   <span class="sign">-</span><span class="sign">-</span>          <span class="keyword">when</span> Type_Custom_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"Currency is "</span> <span class="sign">&amp;</span> My_Holder<span class="sign">.</span>Custom_Code<span class="sign">.</span><a href="#robo13">Name</a><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>          <span class="keyword">when</span> Type_ISO_Currency <span class="sign">=</span><span class="sign">&gt;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"Currency is "</span> <span class="sign">&amp;</span> My_Holder<span class="sign">.</span>ISO_Code<span class="sign">.</span><a href="#robo13">Name</a><span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>             Put_Line <span class="sign">(</span><span class="quote">"And Numeric is "</span> <span class="sign">&amp;</span> My_Holder<span class="sign">.</span>ISO_Code<span class="sign">.</span>Numeric<span class="sign">)</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>       <span class="keyword">end</span> <span class="keyword">case</span><span class="sign">;</span>
+   <span class="sign">-</span><span class="sign">-</span>    <span class="keyword">end</span><span class="sign">;</span>
+</pre>
+<p class="item_name">SEE ALSO</p>
+<pre>    <a href="#robo1">Currency_Handling</a>/<a href="#robo8">Currency_Handling.Currency_Type</a>
+</pre>
+
+<hr />
+<a name="Currency5fHandling2fCurrency5fHandling2eCreate"></a>
+<a name="robo48"></a><h2>Currency_Handling/Currency_Handling.Create [ Subprograms ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">Currency_Handling</a> ] [ <a href="./robo_subprograms.html#robo_top_of_doc">Subprograms</a> ]</p>
+<p class="item_name">SOURCE</p>
+<pre class="source">   <span class="keyword">function</span> Create
+      <span class="sign">(</span><a href="#robo12">Code</a>        <span class="sign">:</span> Wide_Wide_String<span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  Currency<span class="squote">'s code
+       Minor_Unit  : Natural := 0;
+       --  Currency'</span>s minor unit<span class="sign">.</span> Optional<span class="sign">.</span>
+       <a href="#robo13">Name</a>        <span class="sign">:</span> Wide_Wide_String <span class="sign">:</span><span class="sign">=</span> <span class="quote">""</span><span class="sign">;</span>
+       <span class="sign">-</span><span class="sign">-</span>  Currency<span class="squote">'s name. Optional.
+       <a href="#robo18">Symbol</a>      : Wide_Wide_String := ""
+       --  Currency'</span>s symbol<span class="sign">.</span> Optional<span class="sign">.</span>
+      <span class="sign">)</span>
+   <span class="keyword">return</span> Custom_Currency <span class="keyword">with</span> pre <span class="sign">=</span><span class="sign">&gt;</span> Minor_Unit <span class="sign">&lt;</span><span class="sign">=</span> Max_Precision<span class="sign">;</span>
+</pre>
+<p class="item_name">PARAMETERS</p>
+<pre>    <a href="#robo12">Code</a> - A code as a string, such as "EUR" or "USD".
+    Minor_Unit - Currency's minor unit. Optional.
+    <a href="#robo13">Name</a> - Currency's name. Optional.
+    <a href="#robo18">Symbol</a> - Currency's symbol. Optional.
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">   <span class="sign">-</span><span class="sign">-</span>    King <span class="sign">:</span> Custom_Currency <span class="sign">:</span><span class="sign">=</span> Create <span class="sign">(</span><a href="#robo12">Code</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"KNG"</span><span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      Minor_Unit <span class="sign">=</span><span class="sign">&gt;</span> 2<span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      <a href="#robo13">Name</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"King Currency"</span><span class="sign">,</span>
+   <span class="sign">-</span><span class="sign">-</span>                                      <a href="#robo18">Symbol</a> <span class="sign">=</span><span class="sign">&gt;</span> <span class="quote">"K"</span><span class="sign">)</span><span class="sign">;</span>
+</pre>
+<p class="item_name">FUNCTION</p>
+<pre>    Create a custom currency according to parameters. Minor unit may not
+    be greater than maximum precision supported by library.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre>    <a href="#robo1">Currency_Handling</a>/<a href="#robo9">Currency_Handling.Custom_Currency</a>
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/cashe-currency_handling.ads with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2023-07-23 18:40:45</p>
+</div> <!-- footer -->
+</body>
+</html>
