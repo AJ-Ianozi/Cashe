@@ -47,7 +47,7 @@ Currently you can download the `ads` and `adb` files under `/src` and include th
 
 ## Usage
 
-Full API Documentation coming soon!
+You can also read the [full API documentation](https://aj-ianozi.github.io/Cashe/toc_index.html) which has been generated with [ROBODoc](https://github.com/gumpu/ROBODoc).
 
 ### Primitive datatypes
 
