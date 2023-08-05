@@ -5,7 +5,7 @@ package Cashe is
 --  DESCRIPTION
 --    This package provides datatypes and functions utilized by other packages.
 --  ****
-
+   Version : constant String := "1.0.0";
    --  ****t* Cashe/Cashe.Decimal
    --  SOURCE
    type Decimal is delta 1.0E-20 digits 38;
@@ -106,7 +106,7 @@ package Cashe is
       pre => Precision <= Max_Precision;
    --  FUNCTION
    --    Convert a floating point number or minor unit to a Decimal based on
-   --    precision.  Highly recommended to use this function with 
+   --    precision.  Highly recommended to use this function with
    --    Long_Long_Float for highest precision.
    --  PARAMETERS
    --    Item - Floating point to be converted.

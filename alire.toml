@@ -1,6 +1,10 @@
 name = "cashe"
-description = "A money library written in Ada."
-version = "0.1.0-dev"
+description = "A fixed-point decimal money library written in Ada."
+version = "1.0.0"
+licenses = "MIT"
+
+website = "https://github.com/AJ-Ianozi/Cashe/"
+tags = [ "currency", "money", "decimal", "finance" ]
 
 authors = ["AJ Ianozi"]
 maintainers = ["AJ Ianozi <aj@ianozi.com>"]

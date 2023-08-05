@@ -225,7 +225,7 @@ package Cashe.Exchange is
    --       Bitcoin : Custom_Currency :=
    --          Create (Code => "BTC", Minor_Unit => 8,
    --                  Name => "Bitcoin", Symbol => "฿");
-   --       --  based on the Jul. 9, 2023 exchange rate 
+   --       --  based on the Jul. 9, 2023 exchange rate
    --       --  from openexchangerates.org.
    --       BTC_to_USD : constant Decimal := 30196.620159;
    --       USD_to_BTC : constant Decimal := 0.0000331163;
@@ -413,7 +413,6 @@ package Cashe.Exchange is
        --  The currency to convert from
        To   : ISO.Currencies.Currency)
        --  The currency to convert to
-      
    return Decimal;
    function Rate
       (This : Currency_Exchange;

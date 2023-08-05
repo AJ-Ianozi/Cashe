@@ -63,8 +63,7 @@ package body Cashe.Money_Handling is
        By : Natural;
        Method : Round_Method := Half_Even)
    return Money
-      is ( (Amount => Round (This.Amount, By, Method),
-            Cur => This.Cur));
+      is ((Amount => Round (This.Amount, By, Method), Cur => This.Cur));
    function Round (This : Money; Method : Round_Method := Half_Even)
       return Money is
          (This.Round (By => This.Currency_Unit, Method => Method));
@@ -84,39 +83,39 @@ package body Cashe.Money_Handling is
    end As_Minor;
 
    --  Operator overloading
-function "+"   (Left, Right : Money) return Money is
-   (if Left.Same_Currency (Right) then
-      (Amount => Left.Amount + Right.Amount, Cur => Left.Cur)
-      else raise Currency_Mismatch);
-function "+"   (Left : Money; Right : Decimal) return Money is
-   ((Amount => Left.Amount + Right, Cur => Left.Cur));
-function "+"   (Left : Money; Right : Decimal_Minor) return Money is
-   (Left + Decimal (Right));
+   function "+"   (Left, Right : Money) return Money is
+      (if Left.Same_Currency (Right) then
+         (Amount => Left.Amount + Right.Amount, Cur => Left.Cur)
+         else raise Currency_Mismatch);
+   function "+"   (Left : Money; Right : Decimal) return Money is
+      ((Amount => Left.Amount + Right, Cur => Left.Cur));
+   function "+"   (Left : Money; Right : Decimal_Minor) return Money is
+      (Left + Decimal (Right));
 
-function "-"   (Left : Money) return Money is
-   ((Amount => -(Left.Amount), Cur => Left.Cur));
-function "-"   (Left, Right : Money) return Money is
-   (if Left.Same_Currency (Right) then
-      (Amount => Left.Amount - Right.Amount, Cur => Left.Cur)
-      else raise Currency_Mismatch);
-function "-"   (Left : Money; Right : Decimal) return Money is
-   ((Amount => Left.Amount - Right, Cur => Left.Cur));
-function "-"   (Left : Money; Right : Decimal_Minor) return Money is
-   (Left - Decimal (Right));
+   function "-"   (Left : Money) return Money is
+      ((Amount => -(Left.Amount), Cur => Left.Cur));
+   function "-"   (Left, Right : Money) return Money is
+      (if Left.Same_Currency (Right) then
+         (Amount => Left.Amount - Right.Amount, Cur => Left.Cur)
+         else raise Currency_Mismatch);
+   function "-"   (Left : Money; Right : Decimal) return Money is
+      ((Amount => Left.Amount - Right, Cur => Left.Cur));
+   function "-"   (Left : Money; Right : Decimal_Minor) return Money is
+      (Left - Decimal (Right));
 
-function "*" (Left, Right : Money) return Money is
-   (if Left.Same_Currency (Right) then
-      (Amount => Left.Amount * Right.Amount, Cur => Left.Cur)
-      else raise Currency_Mismatch);
-function "*" (Left : Money; Right : Decimal) return Money is
-   ((Amount => Left.Amount * Right, Cur => Left.Cur));
-function "*" (Left : Money; Right : Decimal_Minor) return Money is
-   (Left * Decimal (Right));
+   function "*" (Left, Right : Money) return Money is
+      (if Left.Same_Currency (Right) then
+         (Amount => Left.Amount * Right.Amount, Cur => Left.Cur)
+         else raise Currency_Mismatch);
+   function "*" (Left : Money; Right : Decimal) return Money is
+      ((Amount => Left.Amount * Right, Cur => Left.Cur));
+   function "*" (Left : Money; Right : Decimal_Minor) return Money is
+      (Left * Decimal (Right));
 
    function "/"   (Left, Right : Money) return Money is
       (if Left.Same_Currency (Right) then
-         (if (not Right.Is_Zero) then
-            (Amount => Left.Amount / Right.Amount, Cur => Left.Cur)
+         (if not Right.Is_Zero then
+             (Amount => Left.Amount / Right.Amount, Cur => Left.Cur)
          else raise Division_By_Zero)
        else raise Currency_Mismatch);
    function "/"   (Left : Money; Right : Decimal) return Money is

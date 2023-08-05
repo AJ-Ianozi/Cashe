@@ -99,7 +99,6 @@ package body Cashe is
       end if;
    end To_Decimal;
 
-
    function To_Decimal
       (Item : Long_Long_Float; Precision : Natural := 20)
    return Decimal is
@@ -256,7 +255,6 @@ package body Cashe is
             end;
       end case;
    end To_Decimal;
-
 
    function To_Decimal
       (Item : Long_Float; Precision : Natural := 20)

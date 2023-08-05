@@ -3,7 +3,6 @@ pragma Assertion_Policy (Check);
 with ISO.Currencies;
 with Ada.Strings.Text_Buffers;
 with Cashe.Currency_Handling;
-with Ada.Exceptions;
 --  ****h* Cashe/Money_Handling
 --  SOURCE
 package Cashe.Money_Handling is
@@ -31,7 +30,7 @@ package Cashe.Money_Handling is
    --  SOURCE
    type Money is tagged private with Put_Image => Print_Money;
    --  DESCRIPTION
-   --    An immutable datatype that can be created and stored 
+   --    An immutable datatype that can be created and stored
    --    (or just created on the spot) using various combinations of
    --    From_Major and From_Minor.
    --  USAGE
@@ -66,7 +65,7 @@ package Cashe.Money_Handling is
    --  * Money_Handling.Money/As_Minor
    --  SEE ALSO
    --  * Money_Handling/Money_Handling.From_Major
-   --  * Money_Handling/Money_Handling.From_Minor 
+   --  * Money_Handling/Money_Handling.From_Minor
    --  ****
 
    --  ****m* Money_Handling.Money/Same_Currency
@@ -87,7 +86,7 @@ package Cashe.Money_Handling is
    --              they are different.
    --  EXAMPLE
    --    if My_USD.Same_Currency (My_USD2) then
-   --       Put_Line ("Same Currency."); 
+   --       Put_Line ("Same Currency.");
    --    end if;
    --  ****
 
@@ -100,7 +99,7 @@ package Cashe.Money_Handling is
    --    Boolean - True if currency is custom or not, as opposed to an ISO's.
    --  EXAMPLE
    --    if My_Money.Custom_Currency then
-   --       Put_Line ("Using a custom currency."); 
+   --       Put_Line ("Using a custom currency.");
    --    end if;
    --  ****
 
@@ -191,7 +190,7 @@ package Cashe.Money_Handling is
    --  RETURN VALUE
    --    Boolean:
    --       * True if value of money is 0.
-   --       * False if value is not 0. 
+   --       * False if value is not 0.
    --  EXAMPLE
    --    if My_Money.Is_Zero then
    --       Put_Line ("I'm broke!");
@@ -206,7 +205,7 @@ package Cashe.Money_Handling is
    --  RETURN VALUE
    --    Boolean:
    --       * True if value of money is greater than 0.
-   --       * False if value is not greater than 0. 
+   --       * False if value is not greater than 0.
    --  EXAMPLE
    --    if My_Money.Is_Positive then
    --       Put_Line ("I have money!");
@@ -306,7 +305,6 @@ package Cashe.Money_Handling is
    --    Money_Handling.Money/Full_Precision
    --  ****
 
-
    --  Returns the item in minor format, rounded with banker's rounding.
    --  If money holds values "2000.005, return "200000"
    --  ****m* Money_Handling.Money/As_Minor
@@ -342,13 +340,13 @@ package Cashe.Money_Handling is
    --    Money_Handling/Money_Handling.Money - Sum of the addition.
    --  EXAMPLE
    --    declare
-   --       USD1 : Money := From_Major (7.22, "USD") + From_Major (0.98, "USD");
-   --       USD2 : Money := USD1 + 10;
-   --       USD3 : Money := USD2 + 12.34;
+   --      USD1 : Money := From_Major (7.22, "USD") + From_Major (0.98, "USD");
+   --      USD2 : Money := USD1 + 10;
+   --      USD3 : Money := USD2 + 12.34;
    --    begin
-   --       Put_Line (USD1'Image); --  $ 15.20
-   --       Put_Line (USD2'Image); --  $ 25.20
-   --       Put_Line (USD3'Image); --  $ 37.54
+   --      Put_Line (USD1'Image); --  $ 15.20
+   --      Put_Line (USD2'Image); --  $ 25.20
+   --      Put_Line (USD3'Image); --  $ 37.54
    --    end;
    --  ****
 
@@ -393,13 +391,13 @@ package Cashe.Money_Handling is
    --    Money_Handling/Money_Handling.Money - Product of the multiplication.
    --  EXAMPLE
    --    declare
-   --       USD1 : Money := From_Major (7.20, "USD") * From_Major (1.90, "USD");
-   --       USD2 : Money := USD1 * 10;
-   --       USD3 : Money := USD2 * 12.34;
+   --      USD1 : Money := From_Major (7.20, "USD") * From_Major (1.90, "USD");
+   --      USD2 : Money := USD1 * 10;
+   --      USD3 : Money := USD2 * 12.34;
    --    begin
-   --       Put_Line (USD1'Image); --  $ 13.68
-   --       Put_Line (USD2'Image); --  $ 136.8
-   --       Put_Line (USD3'Image); --  $ 1688.11
+   --      Put_Line (USD1'Image); --  $ 13.68
+   --      Put_Line (USD2'Image); --  $ 136.8
+   --      Put_Line (USD3'Image); --  $ 1688.11
    --    end;
    --  ****
 
@@ -422,13 +420,13 @@ package Cashe.Money_Handling is
    --    Money_Handling/Money_Handling.Money - Quotient of the division.
    --  EXAMPLE
    --    declare
-   --       USD1 : Money := From_Major (120, "USD") / From_Major (15.00, "USD");
-   --       USD2 : Money := USD1 / 10;
-   --       USD3 : Money := USD2 / 0.25;
+   --      USD1 : Money := From_Major (120, "USD") / From_Major (15.00, "USD");
+   --      USD2 : Money := USD1 / 10;
+   --      USD3 : Money := USD2 / 0.25;
    --    begin
-   --       Put_Line (USD1'Image); --  $ 8.00
-   --       Put_Line (USD2'Image); --  $ 0.80
-   --       Put_Line (USD3'Image); --  $ 3.20
+   --      Put_Line (USD1'Image); --  $ 8.00
+   --      Put_Line (USD2'Image); --  $ 0.80
+   --      Put_Line (USD3'Image); --  $ 3.20
    --    end;
    --  ****
 
@@ -462,7 +460,7 @@ package Cashe.Money_Handling is
    --  ERRORS
    --    * Money_Handling/Money_Handling.Currency_Mismatch
    --  RETURN VALUE
-   --    Boolean: Money < X 
+   --    Boolean: Money < X
    --  EXAMPLE
    --    declare
    --       My_Money : Money := From_Major (875.00, "USD");
@@ -489,7 +487,7 @@ package Cashe.Money_Handling is
    --  ERRORS
    --    * Money_Handling/Money_Handling.Currency_Mismatch
    --  RETURN VALUE
-   --    Boolean: Money > X 
+   --    Boolean: Money > X
    --  EXAMPLE
    --    declare
    --       My_Money : Money := From_Major (875.00, "USD");
@@ -516,7 +514,7 @@ package Cashe.Money_Handling is
    --  ERRORS
    --    * Money_Handling/Money_Handling.Currency_Mismatch
    --  RETURN VALUE
-   --    Boolean: Money <= X 
+   --    Boolean: Money <= X
    --  EXAMPLE
    --    declare
    --       My_Money : Money := From_Major (875.00, "USD");
@@ -544,7 +542,7 @@ package Cashe.Money_Handling is
    --  ERRORS
    --    * Money_Handling/Money_Handling.Currency_Mismatch
    --  RETURN VALUE
-   --    Boolean: Money >= X 
+   --    Boolean: Money >= X
    --  EXAMPLE
    --    declare
    --       My_Money : Money := From_Major (875.00, "USD");

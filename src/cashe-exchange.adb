@@ -1,6 +1,5 @@
 pragma Ada_2022;
 with Ada.Strings.Wide_Wide_Hash;
-with Ada.Text_IO; use Ada.Text_IO;
 package body Cashe.Exchange is
 
    --  TODO: looks promising: https://github.com/fawazahmed0/currency-api and
@@ -302,8 +301,8 @@ package body Cashe.Exchange is
    --  These can be used if the base is enabled.
    procedure Set_Rate
       (This : in out Currency_Exchange;
-       To   : Currency_Handling.Custom_Currency;
-       Rate : Decimal)
+         To   : Currency_Handling.Custom_Currency;
+         Rate : Decimal)
    is
       use Currency_Handling;
    begin
