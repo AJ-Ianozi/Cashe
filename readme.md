@@ -41,9 +41,25 @@ Cashe is already fully featured, supporting:
 
 ## Installation
 
-*Alire support coming soon!*
+### With [Alire](https://alire.ada.dev/)
 
-Currently you can download the `ads` and `adb` files under `/src` and include them in your project.
+Be sure that you're using the latest community index:
+```sh
+alr index --update-all
+```
+
+To download and build:
+```sh
+alr get --build cashe
+```
+
+To include it as a dependency in your Alire project:
+```sh
+alr with cashe
+```
+
+### Without Alire
+If you don't use Alire, you can just download the `ads` and `adb` files under `/src` and include them in your project.
 
 ## Usage
 
